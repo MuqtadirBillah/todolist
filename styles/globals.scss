@@ -24,6 +24,15 @@ body{
     background-image: url("/assets/images/back.png");
     background-color: $light-color-dark;
 
+    input, select, textarea, button:focus{
+        outline: 0;
+        outline: none;
+    }
+
+    .mainSectionHeading{
+        color: $main-color-dark;
+    }
+
     .genericTablet{
         min-height: 100vh;
         .container-fluid{
@@ -92,6 +101,62 @@ body{
             cursor: pointer;
             i{
                 transform: scale(1.2);
+            }
+        }
+    }
+    .createAccount{
+        min-height: 100vh;
+        .container-fluid{
+            min-height: 40vh;
+            width: 40%;
+            background-color: $light-color;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.482);
+            padding: 20px 30px;
+            .headings{
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .form{
+                margin-top: 20px;
+                input{
+                    width: 100%;
+                    padding: 5px 10px;
+                    border-color: rgba(0, 0, 0, 0.16);
+                    border: 0;
+                    // border-bottom: 1px solid $main-color-dark;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    // background-color: rgba(0, 0, 0, 0);
+                    height: 40px;
+                    border-radius: 3px;
+                    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+                    font-size: large;
+                }
+                .passwordCol{
+                    position: relative;
+                    span{
+                        position: absolute;
+                        right: 10px;
+                        top: 2px;
+                    }
+                }
+                .createAccountBut{
+                    background-color: $main-color-dark;
+                    color: white;
+                    padding: 5px 10px;
+                    margin-top: 10px;
+                    border-radius: 3px;
+                    border: 1px solid $main-color-dark;
+                    font-size: large;
+                    @include transitions;
+                    &:hover{
+                        // background-color: rgba(0, 0, 0, 0);
+                        // color: $main-color-dark;
+                        transform: scale(1.05);
+                    }
+                }
             }
         }
     }
