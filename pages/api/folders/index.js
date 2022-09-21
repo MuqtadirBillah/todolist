@@ -21,8 +21,9 @@ export default function handler(req, res) {
             })
             mysql.end();
         })
-        .catch((err)=>{
-            console.log(err)
+        .catch((e)=>{
+            console.log(e);
+            res.send(e)
         })
     }
     else if(req.method=='POST'){

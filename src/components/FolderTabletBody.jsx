@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import Router from "next/router";
 import React, { useState, useEffect} from "react";
 
 function FolderTabletBody(){
@@ -17,7 +18,7 @@ function FolderTabletBody(){
         }})
         .then((response)=>{
           console.log(response)
-          if(response.data!='Something went wrong!' && response.data!='record not found!'){
+          if(response.data!='Something went wrong!' && response.data!='record not found!' && response.data!='Invalid Token!'){
             setFolders(response.data);
             setDisplay("");
           }
@@ -28,13 +29,16 @@ function FolderTabletBody(){
           else if(response.data=='Something went wrong!'){
             setError(`Something went wrong!`);
           }
+          else if(response.data=='Invalid Token!'){
+            Router.push("/login");
+          }
         })
         .catch((err)=>{
           setError(`Something went wrong!`);
         })
       }
       else{
-  
+        Router.push(`/login`);
       }
     }, [])
 
@@ -72,7 +76,7 @@ function FolderTabletBody(){
     }
 
     return(
-        <div className="tabletBody folderTableBody">
+        <div className="tabletBody folderTableBody" style={{display: `${display}`}}>
             <div className="createBarDiv">
                 <div className="row">
                     <div className="col-lg-9 col-md-8 col-sm-8 col-6 coll">
