@@ -11,6 +11,14 @@ $light-color-dark: #dddddd;
     -moz-transition: all 0.5s ease-in;
     -o-transition: all 0.5s ease-in;
 }
+@mixin transitionsZeroTwoSec{
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+}
 
 body{
     background-image: url("/assets/images/back.png");
@@ -74,11 +82,17 @@ body{
         i{
             margin-right: 5px
         }
-        @include transitions;
+        @include transitionsZeroTwoSec;
         &:hover{
-            background-color: white;
-            color: $main-color-dark;
-            border-color: white;
+            // background-color: white;
+            // color: $main-color-dark;
+            // border-color: white;
+            background-color: $main-color;
+            border-color: $main-color;
+            cursor: pointer;
+            i{
+                transform: scale(1.2);
+            }
         }
     }
 }

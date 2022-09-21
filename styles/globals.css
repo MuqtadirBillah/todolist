@@ -60,20 +60,23 @@ body .folder {
   border: 2px solid #150050;
   margin-top: 5px;
   margin-bottom: 5px;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-in;
-  -moz-transition: all 0.5s ease-in;
-  -o-transition: all 0.5s ease-in;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
 }
 body .folder i {
   margin-right: 5px;
 }
 body .folder:hover {
-  background-color: white;
-  color: #150050;
-  border-color: white;
+  background-color: #3f0071;
+  border-color: #3f0071;
+  cursor: pointer;
+}
+body .folder:hover i {
+  transform: scale(1.2);
 }
 
 @media only screen and (max-width: 992px) {
