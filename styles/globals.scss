@@ -1,0 +1,109 @@
+$main-color: #3f0071;
+$main-color-dark: #150050;
+$light-color: #eeeeee;
+$light-color-dark: #dddddd;
+
+@mixin transitions{
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+}
+
+body{
+    background-image: url("/assets/images/back.png");
+    background-color: $light-color-dark;
+
+    .genericTablet{
+        min-height: 100vh;
+        .container-fluid{
+            height: 80vh;
+            width: 40%;
+            background-color: $light-color;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.482);
+            padding: 0 !important;
+        }
+    }
+    .tabletHeader{
+        background-color: $main-color-dark;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px 5px 0 0;
+        .row{
+            .logoutCol{
+                text-align: right;
+            }
+            .logoutBut{
+                background-color: $light-color;
+                color: $main-color;
+                padding: 5px 10px;
+                border-radius: 2px;
+                font-weight: 600;
+                border: 1px solid $main-color-dark;
+                @include transitions;
+                &:hover{
+                    border-color: white;
+                    color: white;
+                    background-color: $main-color-dark;
+                }
+            }
+        }
+    }
+    .tabletBody::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }
+    .tabletBody{
+        height: 70vh;
+        padding: 20px 10px;
+        overflow-y: auto;
+    }
+    .folder{
+        padding: 2px 10px;
+        background-color: $main-color-dark;
+        color: white;
+        padding-bottom: 0px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.6);
+        border: 2px solid $main-color-dark;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        i{
+            margin-right: 5px
+        }
+        @include transitions;
+        &:hover{
+            background-color: white;
+            color: $main-color-dark;
+            border-color: white;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 992px) {
+    .genericTablet{
+        .container-fluid{
+            width: 60% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .genericTablet{
+        .container-fluid{
+            width: 70% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .genericTablet{
+        .container-fluid{
+            width: 90% !important;
+        }
+    }
+}
