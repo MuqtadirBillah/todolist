@@ -70,6 +70,41 @@ body{
             }
         }
     }
+    .folderTableBody{
+        padding: 0 !important;
+        .createBarDiv{
+            background-color: $main-color-dark;
+            border-top: 1px solid $light-color;
+            padding: 10px;
+            .row{
+                padding: 2px 15px;
+                .coll{
+                    padding: 0 !important;
+                }
+            }
+            input{
+                width: 100%;
+                height: 35px;
+                padding: 5px 10px;
+                border: 2px solid rgba(0, 0, 0, 0);
+                border-radius: 3px 0 0 3px;
+            }
+            button{
+                width: 100%;
+                height: 35px;
+                border: 2px solid rgba(0, 0, 0, 0);
+                border-radius: 0 3px 3px 0;
+                &:hover{
+                    background-color: $light-color-dark;
+                }
+            }
+        }
+        .folders{
+            padding: 20px 25px;
+        }
+    }
+    .folderTablet{
+    }
     .tabletBody::-webkit-scrollbar { 
         display: none;  /* Safari and Chrome */
     }
@@ -79,7 +114,7 @@ body{
         overflow-y: auto;
     }
     .folder{
-        padding: 2px 10px;
+        padding: 5px 10px;
         background-color: $main-color-dark;
         color: white;
         padding-bottom: 0px;
@@ -93,11 +128,11 @@ body{
         }
         @include transitionsZeroTwoSec;
         &:hover{
-            // background-color: white;
-            // color: $main-color-dark;
-            // border-color: white;
-            background-color: $main-color;
-            border-color: $main-color;
+            background-color: white;
+            color: $main-color-dark;
+            border-color: white;
+            // background-color: $main-color;
+            // border-color: $main-color;
             cursor: pointer;
             i{
                 transform: scale(1.2);

@@ -1,12 +1,13 @@
+import axios from 'axios'
+import Cookies from 'js-cookie'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import DynamicHead from '../src/components/DynamicHead'
 import FolderTablet from '../src/components/FolderTablet'
 import GenericTablet from '../src/components/GenericTablet'
 
 export default function Home() {
-
-  
 
   return (
     <div>
