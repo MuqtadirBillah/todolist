@@ -5,6 +5,9 @@ import FolderTablet from '../src/components/FolderTablet'
 import GenericTablet from '../src/components/GenericTablet'
 
 export default function Home() {
+
+  
+
   return (
     <div>
       <DynamicHead title="Todo List" description="Manage your Todo list with multiple folders." keywords="todo list" />

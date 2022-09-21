@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import React, { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -92,6 +93,7 @@ function CreateAccount(){
                                     </span>
                                 </div>
                                 <div className="col-lg-6 col-sm-12">
+                                    <p>Already have an Account? <Link href="/login"><a>Login</a></Link></p>
                                     <button className="createAccountBut" onClick={()=>{createAccount()}}>Create Account</button>
                                 </div>
                             </div>
