@@ -49,6 +49,24 @@ body .tabletHeader .row .logoutBut:hover {
   color: white;
   background-color: #150050;
 }
+body .tabletHeader .row .deleteBut {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0);
+  margin-right: 2px;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+}
+body .tabletHeader .row .deleteBut:hover {
+  background-color: rgb(218, 2, 2);
+}
 body .folderTableBody {
   padding: 0 !important;
 }

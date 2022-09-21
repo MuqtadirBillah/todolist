@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import Link from "next/link";
 import Router from "next/router";
 import React, { useState, useEffect} from "react";
 
@@ -95,7 +96,7 @@ function FolderTabletBody(){
                                 return(
                                     <div className="col-lg-6 col-sm-12">
                                         <div className="folder align-self-center">
-                                            <h4><i className="fas fa-folder"></i> {d.folder_name}</h4>
+                                            <Link href={`/folder/${d.folder_id}`}><h4><i className="fas fa-folder"></i> {d.folder_name}</h4></Link>
                                         </div>
                                     </div>
                                 )
