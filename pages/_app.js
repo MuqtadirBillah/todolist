@@ -1,8 +1,14 @@
 import '../styles/globals.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactGA from "react-ga4";
 
 function MyApp({ Component, pageProps }) {
+
+  
+  ReactGA.initialize("G-5QDBET34C2");
+  ReactGA.send("pageview");
+
   return(
     <>
       <ToastContainer
