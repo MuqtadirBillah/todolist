@@ -9,6 +9,22 @@ body input, body select, body textarea, body button:focus {
 body .mainSectionHeading {
   color: #150050;
 }
+body .deleteBin:hover {
+  color: red;
+  transform: scale(1.1);
+}
+body .checkBoxGreen {
+  color: rgb(1, 234, 1);
+}
+body .checkBoxGreen:hover {
+  color: rgb(87, 87, 87);
+}
+body .checkBoxWhite:hover {
+  color: rgb(1, 234, 1);
+}
+body .folderIcon {
+  cursor: pointer;
+}
 body .genericTablet {
   min-height: 100vh;
 }

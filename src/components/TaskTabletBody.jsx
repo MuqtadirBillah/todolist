@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import React, { useState, useEffect} from "react";
+import { toast } from "react-toastify";
 
 function TaskTabletBody(props){
 
@@ -10,6 +11,7 @@ function TaskTabletBody(props){
     var [tasks, setTasks] = useState([]);
     var [error, setError] = useState('');
     var [name, setName] = useState("");
+    var [folderId, setFolderId] = useState();
     var router = useRouter();
   
     useEffect(()=>{
@@ -22,6 +24,8 @@ function TaskTabletBody(props){
               console.log(response)
               if(response.data!='Something went wrong!' && response.data!='record not found!' && response.data!='Invalid Token!'){
                 setTasks(response.data);
+                console.log(response.data[0].folder_id)
+                setFolderId(response.data[0].folder_id)
                 setDisplay("");
               }
               else if(response.data=='record not found!'){
@@ -45,9 +49,44 @@ function TaskTabletBody(props){
       }
     }, [router.query["id"]])
 
+    function getTasks(){
+        if(Cookies.get("userCookie")){
+          if(router.query["id"]!=undefined){
+              axios.get(`/api/folder/tasks/${router.query["id"]}`, { headers: {
+                token: Cookies.get("userCookie")
+              }})
+              .then((response)=>{
+                console.log(response)
+                if(response.data!='Something went wrong!' && response.data!='record not found!' && response.data!='Invalid Token!'){
+                  setTasks(response.data);
+                  console.log(response.data[0].folder_id)
+                  setFolderId(response.data[0].folder_id)
+                  setDisplay("");
+                }
+                else if(response.data=='record not found!'){
+                  setError(`record not found!`);
+                  setDisplay("");
+                }
+                else if(response.data=='Something went wrong!'){
+                  setError(`Something went wrong!`);
+                }
+                else if(response.data=='Invalid Token!'){
+                  Router.push("/login");
+                }
+              })
+              .catch((err)=>{
+                setError(`Something went wrong!`);
+              })
+          }
+        }
+        else{
+          Router.push(`/login`);
+        }
+    }
+
     function addTask(){
         if(name.length>0){
-            axios.post("/api/task/add", {task: task, folder: folder}, {
+            axios.post("/api/task/add", {task: name, folderId: folderId}, {
                 headers: {
                     token: Cookies.get("userCookie")
                 }
@@ -55,27 +94,71 @@ function TaskTabletBody(props){
             .then((response)=>{
                 console.log(response);
                 if(response.data=='added!'){
-                    axios.get(`/api/folders`, { headers: {
-                        token: Cookies.get("userCookie")
+                    axios.get(`/api/folder/tasks/${router.query["id"]}`, { headers: {
+                      token: Cookies.get("userCookie")
                     }})
                     .then((response)=>{
-                        console.log(response)
-                        if(response.data!='Something went wrong!' && response.data!='record not found!'){
-                            setTasks(response.data);
-                        }
-                        else if(response.data=='record not found!'){
-                            setError(`record not found!`);
-                        }
-                        else if(response.data=='Something went wrong!'){
-                            setError(`Something went wrong!`);
-                        }
+                      console.log(response)
+                      if(response.data!='Something went wrong!' && response.data!='record not found!' && response.data!='Invalid Token!'){
+                        setTasks(response.data);
+                        setDisplay("");
+                      }
+                      else if(response.data=='record not found!'){
+                        setError(`record not found!`);
+                        setDisplay("");
+                      }
+                      else if(response.data=='Something went wrong!'){
+                        setError(`Something went wrong!`);
+                      }
+                      else if(response.data=='Invalid Token!'){
+                        Router.push("/login");
+                      }
                     })
                     .catch((err)=>{
-                        setError(`Something went wrong!`);
+                      setError(`Something went wrong!`);
                     })
                 }
             })
         }
+    }
+
+    function deleteTask(taskId, folderId){
+        axios.post("/api/task/delete", {
+            taskId: taskId,
+            folderId: folderId
+        })
+        .then((response)=>{
+            console.log(response);
+            if(response.data=='deleted!'){
+                getTasks();
+                toast(`Task deleted!`)
+            }
+            else{
+                toast(`Something went wrong!`);
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+            toast(`Something went wrong!`);
+        })
+    }
+
+    function toggleStatus(taskId){
+        axios.post("/api/task/update", { taskId: taskId })
+        .then((response)=>{
+            console.log(response);
+            if(response.data=='updated!'){
+                getTasks();
+                toast(`Task updated!`)
+            }
+            else{
+                toast(`Something went wrong!`);
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+            toast(`Something went wrong!`);
+        })
     }
 
     return(
@@ -101,10 +184,10 @@ function TaskTabletBody(props){
                                             <h4>
                                                 {
                                                     (t.task_status.toLowerCase()=='pending') ?
-                                                    <i className="far fa-check-square"></i> :                                                    
-                                                    <i className="fas fa-check-square"></i>
+                                                    <i className="far fa-check-square checkBoxWhite" onClick={()=>{toggleStatus(t.task_id)}}></i> :                                                    
+                                                    <i className="fas fa-check-square checkBoxGreen" onClick={()=>{toggleStatus(t.task_id)}}></i>
                                                 }
-                                                <i className="fas fa-trash"></i>
+                                                <i className="fas fa-trash deleteBin" onClick={()=>{deleteTask(t.task_id, t.folder_id)}}></i>
                                                 {
                                                     (t.task_status.toLowerCase()=='pending') ?
                                                     <span>{t.task_name}</span> :

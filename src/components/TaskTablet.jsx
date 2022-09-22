@@ -9,12 +9,13 @@ import TaskTabletHeader from "./TaskTabletHead";
 function TaskTablet(){
 
     var [folderName, setFolderName] = useState("Folder");
+    var [folderId, setFolderId] = useState();
 
     return(
         <div className="genericTablet d-flex align-items-center">
             <div className="container-fluid">
-                <TaskTabletHeader folderName={folderName} />
-                <TaskTabletBody setFolderName={setFolderName} folderName={folderName} />
+                <TaskTabletHeader folderName={folderName} folderId={folderId} />
+                <TaskTabletBody setFolderName={setFolderName} folderName={folderName} setFolderId={setFolderId} />
             </div>
         </div>
     );

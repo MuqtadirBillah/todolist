@@ -32,6 +32,29 @@ body{
     .mainSectionHeading{
         color: $main-color-dark;
     }
+
+    .deleteBin{
+        // color: red;
+        &:hover{
+            color: red;
+            transform: scale(1.1);
+        }
+    }
+    .checkBoxGreen{
+        color: rgb(1, 234, 1);
+        &:hover{
+            color: rgb(87, 87, 87);
+        }
+    }
+    .checkBoxWhite{
+        &:hover{
+            color: rgb(1, 234, 1);
+        }
+    }
+    .folderIcon{
+        cursor: pointer;
+    }
+
     .genericTablet{
         min-height: 100vh;
         .container-fluid{

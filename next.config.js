@@ -7,7 +7,7 @@ const nextConfig = {
     MYSQL_USER:'u812210942_todolist',
     MYSQL_DATABASE:'u812210942_todolist',
     MYSQL_PASSWORD:'Muqtadir4',
-    OUTLOOK_PASSWORD: 'MusabAmmar4',
+    OUTLOOK_PASSWORD: 'DivineVirtuality',
     JWTSecret: 'MuqtadirBillahMusabAbbasi',
   },
   eslint: {

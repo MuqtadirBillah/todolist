@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import DynamicHead from "../src/components/DynamicHead";
@@ -18,16 +19,6 @@ function ForgotPassword(){
                 console.log(response);
                 if(response.data=='updated!'){
                     toast(`Password Successfully Reset!`)
-                    axios.post("/api/updated-code", {email: email})
-                    .then((res)=>{
-                        console.log(res);
-                    })
-                    .catch((err)=>{
-                        console.log(err);
-                    })
-                    setCode('');
-                    setEmail('');
-                    setPassword('');
                 }
                 else if(response.data=='Email does not exists!'){
                     toast(`Email does not exists!`)
@@ -90,6 +81,7 @@ function ForgotPassword(){
                                     <input type="number" placeholder="Verification Code" value={code} onChange={(e)=>{setCode(e.target.value)}} />
                                     <button className="sendBut" onClick={()=>{sendCode()}}>Send Code</button>
                                     <button className="resetBut" onClick={()=>{resetPassword()}}>Reset</button>
+                                    <Link href="/"><button className="sendBut">Login</button></Link>
                                 </div>
                             </div>
                         </div>
