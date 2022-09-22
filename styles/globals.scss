@@ -393,6 +393,11 @@ body{
             width: 60% !important;
         }
     }
+    .createAccount{
+        .container-fluid{
+            width: 60% !important;
+        }
+    }
     .login{
         .container-fluid{
             height: 100vh;
@@ -427,6 +432,11 @@ body{
             width: 70% !important;
         }
     }
+    .createAccount{
+        .container-fluid{
+            width: 70% !important;
+        }
+    }
     .forgotPassword{
         .container{
             .row{
@@ -440,6 +450,11 @@ body{
 
 @media only screen and (max-width: 576px) {
     .genericTablet{
+        .container-fluid{
+            width: 90% !important;
+        }
+    }
+    .createAccount{
         .container-fluid{
             width: 90% !important;
         }
