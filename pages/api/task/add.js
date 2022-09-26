@@ -6,6 +6,7 @@ export default function handler(req, res) {
         res.status(404).json(`Page not found!`)
     }
     else if(req.method=="POST"){
+        console.log(req.body)
         mysql.query(`insert into task(task_name, creation_date) values("${req.body.task}", "${moment().format("MMMM Do YYYY, h:mm:ss a")}")`, function(error, result){
             if(error){
                 console.log(error)

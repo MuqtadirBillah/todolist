@@ -16,7 +16,7 @@ export default function handler(req, res) {
                 else{
                     console.log(result);
                     if(result.length>0){
-                        mysql.query(`select * from foldertask as ft inner join task as t on t.task_id=ft.task_id where ft.folder_id="${id}";`, function(err, re){
+                        mysql.query(`select * from foldertask as ft left join task as t on t.task_id=ft.task_id where ft.folder_id="${id}";`, function(err, re){
                             if(err){
                                 console.log(err);
                                 res.send(err);
@@ -26,7 +26,7 @@ export default function handler(req, res) {
                                     res.send(re);
                                 }
                                 else{
-                                    res.send("record not found!");
+                                    res.send({ message: "record not found!", folderName: re[0].folderName });
                                 }
                             }
                         })

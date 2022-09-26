@@ -17,6 +17,7 @@ function TaskTabletBody(props){
     useEffect(()=>{
       if(Cookies.get("userCookie")){
         if(router.query["id"]!=undefined){
+          setFolderId(router.query["id"]);
             axios.get(`/api/folder/tasks/${router.query["id"]}`, { headers: {
               token: Cookies.get("userCookie")
             }})
@@ -25,7 +26,6 @@ function TaskTabletBody(props){
               if(response.data!='Something went wrong!' && response.data!='record not found!' && response.data!='Invalid Token!'){
                 setTasks(response.data);
                 console.log(response.data[0].folder_id)
-                setFolderId(response.data[0].folder_id)
                 setDisplay("");
               }
               else if(response.data=='record not found!'){
@@ -60,7 +60,6 @@ function TaskTabletBody(props){
                 if(response.data!='Something went wrong!' && response.data!='record not found!' && response.data!='Invalid Token!'){
                   setTasks(response.data);
                   console.log(response.data[0].folder_id)
-                  setFolderId(response.data[0].folder_id)
                   setDisplay("");
                 }
                 else if(response.data=='record not found!'){
@@ -86,6 +85,7 @@ function TaskTabletBody(props){
 
     function addTask(){
         if(name.length>0){
+          console.log(folderId)
             axios.post("/api/task/add", {task: name, folderId: folderId}, {
                 headers: {
                     token: Cookies.get("userCookie")
@@ -94,7 +94,8 @@ function TaskTabletBody(props){
             .then((response)=>{
                 console.log(response);
                 if(response.data=='added!'){
-                    axios.get(`/api/folder/tasks/${router.query["id"]}`, { headers: {
+                  console.log(folderId)
+                    axios.get(`/api/folder/tasks/${folderId}`, { headers: {
                       token: Cookies.get("userCookie")
                     }})
                     .then((response)=>{
